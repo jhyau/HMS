@@ -194,7 +194,7 @@ def generate_shelf_placements(objects_path,
                 lightP = env.get_lightP()
                 obj_dict['mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
-                obj_dict['mena_loc_lightV'] = lightV
+                obj_dict['mean_loc_lightV'] = lightV
 
                 env.set_camera_point_at(obj_dict['location'])
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
