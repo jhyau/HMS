@@ -182,6 +182,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_depth'] = depth
                 obj_dict['mean_loc_im3d'] = im3d
                 obj_dict['mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['mean_loc_K'] = K
