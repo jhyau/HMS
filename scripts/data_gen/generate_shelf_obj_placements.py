@@ -162,7 +162,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict = result_dict[obj_id]
 
                 env.set_camera_point_at(mean_loc, dist=0.45)
-                _, _, segmask, _, _ = env.get_observation(obj_id)
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id)
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['location_img'] = [0.0,0.0]
@@ -178,6 +178,10 @@ def generate_shelf_placements(objects_path,
                 clen = cmax-cmin
                 obj_dict['location_img'] = [rmean,cmean]
                 obj_dict['dimension'] = [rlen,clen]
+                obj_dict['mean_loc_rgb'] = rgb
+                obj_dict['mean_loc_depth'] = depth
+                obj_dict['mean_loc_im3d'] = im3d
+                obj_dict['mean_loc_depth_im3d'] = depth_im3d
 
                 env.set_camera_point_at(obj_dict['location'])
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
