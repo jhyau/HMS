@@ -171,8 +171,8 @@ class ContainerObjectsEnv(object):
 
     def adjust_camera(self, camera_eye_position, camera_target_position, camera_up_vector, randomize=False):
         if randomize:
-            self.simulator.renderer.set_camera(camera_eye_position+np.random.random(3)*0.3,
-                                               camera_target_position+np.random.random(3)*0.3,
+            self.simulator.renderer.set_camera(camera_eye_position+np.random.random(3)*0.2,
+                                               camera_target_position+np.random.random(3)*0.2,
                                                camera_up_vector)
         else:
             self.simulator.renderer.set_camera(camera_eye_position,
