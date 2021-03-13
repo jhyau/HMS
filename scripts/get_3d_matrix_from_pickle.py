@@ -40,32 +40,40 @@ for placement in PICKLE_PATH:
             Path(path).mkdir(parents=True, exist_ok=True)
             np.save(path+'/'+title, p[key]['im3d'])
             np.save(path+'/'+title+'_rand', p[key]['im3d_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_im3d'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_depth_im3d'
             np.save(path+'/'+title, p[key]['depth_im3d'])
             np.save(path+'/'+title+'_rand', p[key]['depth_im3d_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_depth_im3d'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_segmask'
-            np.save(path+'/'+title, p[key]['segmask'])
-            np.save(path+'/'+title+'_rand', p[key]['segmask_rand']) 
+            np.save(path+'/'+title, p[key][str(key)+'segmask'])
+            np.save(path+'/'+title+'_rand', p[key][str(key)+'_segmask_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_'+str(key)+'_segmask'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_camera_intrinsics'
             np.save(path+'/'+title, p[key]['K'])
             np.save(path+'/'+title+'_rand', p[key]['K_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_K'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_P'
             np.save(path+'/'+title, p[key]['P'])
             np.save(path+'/'+title+'_rand', p[key]['P_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_P'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_V'
             np.save(path+'/'+title, p[key]['V'])
             np.save(path+'/'+title+'_rand', p[key]['V_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_V'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_lightP'
             np.save(path+'/'+title, p[key]['lightP'])
             np.save(path+'/'+title+'_rand', p[key]['lightP_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_lightP'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_lightV'
             np.save(path+'/'+title, p[key]['lightV'])
             np.save(path+'/'+title+'_rand', p[key]['lightV_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_lightV'])
 
