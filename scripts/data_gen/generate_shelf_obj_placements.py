@@ -182,6 +182,18 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_depth'] = depth
                 obj_dict['mean_loc_im3d'] = im3d
                 obj_dict['mean_loc_depth_im3d'] = depth_im3d
+                # Get camera intrinsics
+                K = env.get_camera_intrinsics()
+                obj_dict['mean_loc_K'] = K
+                # Get the projection matrix
+                P = env.get_projection_matrix()
+                obj_dict['mean_loc_P'] = P
+                V = env.get_V()
+                obj_dict['mean_loc_V'] = V
+                lightP = env.get_lightP()
+                obj_dict['mean_loc_lightP'] = lightP
+                lightV = env.get_lightV()
+                obj_dict['mena_loc_lightV'] = lightV
 
                 env.set_camera_point_at(obj_dict['location'])
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
