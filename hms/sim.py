@@ -288,17 +288,17 @@ class ContainerObjectsEnv(object):
             save_time = str(time.time())
             plt.imshow(segmask_im)
             plt.title('segmask')
-            plt.savefig(save_dir + "_" + segmak_object_id +"_segmask_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + str(segmak_object_id) +"_segmask_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(rgb_im)
             plt.title('rgb')
-            plt.savefig(save_dir + "_" + segmak_object_id + "_rgb_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + str(segmak_object_id) + "_rgb_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(depth_im)
             plt.title('depth')
-            plt.savefig(save_dir + "_" + segmak_object_id + "_depth_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + str(segmak_object_id) + "_depth_im_" + save_time + '_.png')
             plt.close()
 
         if segmak_object_id:
