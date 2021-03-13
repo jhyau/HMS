@@ -48,7 +48,7 @@ for placement in PICKLE_PATH:
             np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_depth_im3d'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_segmask'
-            np.save(path+'/'+title, p[key][str(key)+'segmask'])
+            np.save(path+'/'+title, p[key][str(key)+'_segmask'])
             np.save(path+'/'+title+'_rand', p[key][str(key)+'_segmask_rand'])
             np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_'+str(key)+'_segmask'])
 
