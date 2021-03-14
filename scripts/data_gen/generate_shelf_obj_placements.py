@@ -198,7 +198,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_lightV'] = lightV
 
                 # Place camera at mean of all objects' locations, x translate
-                x_mean_loc = mean_loc + [0.1, 0.0, 0.0]
+                x_mean_loc = mean_loc + [0.05, 0.0, 0.0]
                 env.set_camera_point_at(x_mean_loc, dist=0.45)
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id)
                 location = np.array([0.0,0.0,0.0])
@@ -236,7 +236,7 @@ def generate_shelf_placements(objects_path,
 
 
                 # Place camera at mean of all objects' locations, y translate
-                y_mean_loc = mean_loc + [0.0, 0.1, 0.0]
+                y_mean_loc = mean_loc + [0.0, 0.05, 0.0]
                 env.set_camera_point_at(y_mean_loc, dist=0.45)
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id)
                 location = np.array([0.0,0.0,0.0])
@@ -274,7 +274,7 @@ def generate_shelf_placements(objects_path,
 
 
                 # Place camera at mean of all objects' locations, z translate
-                z_mean_loc = mean_loc + [0.0, 0.0, 0.1]
+                z_mean_loc = mean_loc + [0.0, 0.0, 0.05]
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id)
                 location = np.array([0.0,0.0,0.0])
