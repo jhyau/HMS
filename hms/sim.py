@@ -260,7 +260,8 @@ class ContainerObjectsEnv(object):
                         visualize=False,
                         save=False,
                         demo=False,
-                        randomize_camera=False):
+                        randomize_camera=False,
+                        title=None):
         rgb_im, depth_im, im3d, depth_im3d = self.get_renderer_rgb_depth()
         if segmak_object_id:
             segmask_im = self.get_renderer_segmask(segmak_object_id)
@@ -288,17 +289,26 @@ class ContainerObjectsEnv(object):
             save_time = str(time.time())
             plt.imshow(segmask_im)
             plt.title('segmask')
-            plt.savefig(save_dir + str(segmak_object_id) +"_segmask_im_" + save_time + '_.png')
+            if title is not None:
+                plt.savefig(save_dir + title + '_' + str(segmak_object_id) +"_segmask_im_" + save_time + '_.png')
+            else:
+                plt.savefig(save_dir + str(segmak_object_id) +"_segmask_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(rgb_im)
             plt.title('rgb')
-            plt.savefig(save_dir + str(segmak_object_id) + "_rgb_im_" + save_time + '_.png')
+            if title is not None:
+                plt.savefig(save_dir + title + '_' + str(segmak_object_id) + "_rgb_im_" + save_time + '_.png')
+            else:
+                plt.savefig(save_dir + str(segmak_object_id) + "_rgb_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(depth_im)
             plt.title('depth')
-            plt.savefig(save_dir + str(segmak_object_id) + "_depth_im_" + save_time + '_.png')
+            if title is not None:
+                plt.savefig(save_dir + title + '_' + str(segmak_object_id) + "_depth_im_" + save_time + '_.png')
+            else:
+                plt.savefig(save_dir + str(segmak_object_id) + "_depth_im_" + save_time + '_.png')
             plt.close()
 
         if segmak_object_id:
