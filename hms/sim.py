@@ -257,10 +257,14 @@ class ContainerObjectsEnv(object):
 
     def get_pose_trans_array(self):
         pose_trans_array = self.simulator.renderer.pose_trans_array
+        if not pose_trans_array[0] is None:
+            pose_trans_array = np.ascontiguousarray(self.get_trans_data)
         return pose_trans_array
 
     def get_pose_rot_array(self):
         pose_rot_array = self.simulator.renderer.pose_rot_array
+        if not pose_rot_array[0] is None:
+            pose_rot_array = np.ascontiguousarray(self.get_rot_data)
         return pose_rot_array
 
     def get_last_trans_array(self):
