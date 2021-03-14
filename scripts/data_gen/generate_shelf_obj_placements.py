@@ -197,14 +197,14 @@ def generate_shelf_placements(objects_path,
                 lightV = env.get_lightV()
                 obj_dict['mean_loc_lightV'] = lightV
 
-                # Place camera at mean of all objects' locations, x translate
+                # Place camera at mean of all objects' locations, +x translate
                 x_mean_loc = mean_loc + [0.2, 0.0, 0.0]
                 env.set_camera_point_at(x_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
-                    obj_dict['x_mean_location_img'] = [0.0,0.0]
-                    obj_dict['x_mean_dimension'] = [0.0,0.0]
+                    obj_dict['x_add_mean_location_img'] = [0.0,0.0]
+                    obj_dict['x_add_mean_dimension'] = [0.0,0.0]
                     continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
@@ -214,35 +214,73 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
-                obj_dict['x_mean_location_img'] = [rmean,cmean]
-                obj_dict['x_mean_dimension'] = [rlen,clen]
-                obj_dict['x_mean_loc_rgb'] = rgb
-                obj_dict['x_mean_loc_depth'] = depth
-                obj_dict['x_mean_loc_im3d'] = im3d
-                obj_dict['x_mean_loc_depth_im3d'] = depth_im3d
-                obj_dict['x_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['x_add_mean_location_img'] = [rmean,cmean]
+                obj_dict['x_add_mean_dimension'] = [rlen,clen]
+                obj_dict['x_add_mean_loc_rgb'] = rgb
+                obj_dict['x_add_mean_loc_depth'] = depth
+                obj_dict['x_add_mean_loc_im3d'] = im3d
+                obj_dict['x_add_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['x_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
-                obj_dict['x_mean_loc_K'] = K
+                obj_dict['x_add_mean_loc_K'] = K
                 # Get the projection matrix
                 P = env.get_projection_matrix()
-                obj_dict['x_mean_loc_P'] = P
+                obj_dict['x_add_mean_loc_P'] = P
                 V = env.get_V()
-                obj_dict['x_mean_loc_V'] = V
+                obj_dict['x_add_mean_loc_V'] = V
                 lightP = env.get_lightP()
-                obj_dict['x_mean_loc_lightP'] = lightP
+                obj_dict['x_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
-                obj_dict['x_mean_loc_lightV'] = lightV
+                obj_dict['x_add_mean_loc_lightV'] = lightV
 
 
-                # Place camera at mean of all objects' locations, y translate
+                # Place camera at mean of all objects' locations, -x translate
+                x_mean_loc = mean_loc - [0.2, 0.0, 0.0]
+                env.set_camera_point_at(x_mean_loc, dist=0.45)
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_sub_mean_loc')
+                location = np.array([0.0,0.0,0.0])
+                if not np.any(segmask):
+                    obj_dict['x_sub_mean_location_img'] = [0.0,0.0]
+                    obj_dict['x_sub_mean_dimension'] = [0.0,0.0]
+                    continue
+                rows = np.any(segmask, axis=0)
+                cols = np.any(segmask, axis=1)
+                rmin, rmax = np.where(rows)[0][[0, -1]]
+                cmin, cmax = np.where(cols)[0][[0, -1]]
+                rmean = (rmin+rmax)/2
+                cmean = (cmin+cmax)/2
+                rlen = rmax-rmin
+                clen = cmax-cmin
+                obj_dict['x_sub_mean_location_img'] = [rmean,cmean]
+                obj_dict['x_sub_mean_dimension'] = [rlen,clen]
+                obj_dict['x_sub_mean_loc_rgb'] = rgb
+                obj_dict['x_sub_mean_loc_depth'] = depth
+                obj_dict['x_sub_mean_loc_im3d'] = im3d
+                obj_dict['x_sub_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['x_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                # Get camera intrinsics
+                K = env.get_camera_intrinsics()
+                obj_dict['x_sub_mean_loc_K'] = K
+                # Get the projection matrix
+                P = env.get_projection_matrix()
+                obj_dict['x_sub_mean_loc_P'] = P
+                V = env.get_V()
+                obj_dict['x_sub_mean_loc_V'] = V
+                lightP = env.get_lightP()
+                obj_dict['x_sub_mean_loc_lightP'] = lightP
+                lightV = env.get_lightV()
+                obj_dict['x_sub_mean_loc_lightV'] = lightV
+
+
+                # Place camera at mean of all objects' locations, +y translate
                 y_mean_loc = mean_loc + [0.0, 0.2, 0.0]
                 env.set_camera_point_at(y_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
-                    obj_dict['y_mean_location_img'] = [0.0,0.0]
-                    obj_dict['y_mean_dimension'] = [0.0,0.0]
+                    obj_dict['y_add_mean_location_img'] = [0.0,0.0]
+                    obj_dict['y_add_mean_dimension'] = [0.0,0.0]
                     continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
@@ -252,35 +290,72 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
-                obj_dict['y_mean_location_img'] = [rmean,cmean]
-                obj_dict['y_mean_dimension'] = [rlen,clen]
-                obj_dict['y_mean_loc_rgb'] = rgb
-                obj_dict['y_mean_loc_depth'] = depth
-                obj_dict['y_mean_loc_im3d'] = im3d
-                obj_dict['y_mean_loc_depth_im3d'] = depth_im3d
-                obj_dict['y_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['y_add_mean_location_img'] = [rmean,cmean]
+                obj_dict['y_add_mean_dimension'] = [rlen,clen]
+                obj_dict['y_add_mean_loc_rgb'] = rgb
+                obj_dict['y_add_mean_loc_depth'] = depth
+                obj_dict['y_add_mean_loc_im3d'] = im3d
+                obj_dict['y_add_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['y_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
-                obj_dict['y_mean_loc_K'] = K
+                obj_dict['y_add_mean_loc_K'] = K
                 # Get the projection matrix
                 P = env.get_projection_matrix()
-                obj_dict['y_mean_loc_P'] = P
+                obj_dict['y_add_mean_loc_P'] = P
                 V = env.get_V()
-                obj_dict['y_mean_loc_V'] = V
+                obj_dict['y_add_mean_loc_V'] = V
                 lightP = env.get_lightP()
-                obj_dict['y_mean_loc_lightP'] = lightP
+                obj_dict['y_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
-                obj_dict['y_mean_loc_lightV'] = lightV
+                obj_dict['y_add_mean_loc_lightV'] = lightV
+
+                # Place camera at mean of all objects' locations, -y translate
+                y_mean_loc = mean_loc - [0.0, 0.2, 0.0]
+                env.set_camera_point_at(y_mean_loc, dist=0.45)
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_sub_mean_loc')
+                location = np.array([0.0,0.0,0.0])
+                if not np.any(segmask):
+                    obj_dict['y_sub_mean_location_img'] = [0.0,0.0]
+                    obj_dict['y_sub_mean_dimension'] = [0.0,0.0]
+                    continue
+                rows = np.any(segmask, axis=0)
+                cols = np.any(segmask, axis=1)
+                rmin, rmax = np.where(rows)[0][[0, -1]]
+                cmin, cmax = np.where(cols)[0][[0, -1]]
+                rmean = (rmin+rmax)/2
+                cmean = (cmin+cmax)/2
+                rlen = rmax-rmin
+                clen = cmax-cmin
+                obj_dict['y_sub_mean_location_img'] = [rmean,cmean]
+                obj_dict['y_sub_mean_dimension'] = [rlen,clen]
+                obj_dict['y_sub_mean_loc_rgb'] = rgb
+                obj_dict['y_sub_mean_loc_depth'] = depth
+                obj_dict['y_sub_mean_loc_im3d'] = im3d
+                obj_dict['y_sub_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['y_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                # Get camera intrinsics
+                K = env.get_camera_intrinsics()
+                obj_dict['y_sub_mean_loc_K'] = K
+                # Get the projection matrix
+                P = env.get_projection_matrix()
+                obj_dict['y_sub_mean_loc_P'] = P
+                V = env.get_V()
+                obj_dict['y_sub_mean_loc_V'] = V
+                lightP = env.get_lightP()
+                obj_dict['y_sub_mean_loc_lightP'] = lightP
+                lightV = env.get_lightV()
+                obj_dict['y_sub_mean_loc_lightV'] = lightV
 
 
-                # Place camera at mean of all objects' locations, z translate
+                # Place camera at mean of all objects' locations, +z translate
                 z_mean_loc = mean_loc + [0.0, 0.0, 0.2]
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
-                    obj_dict['z_mean_location_img'] = [0.0,0.0]
-                    obj_dict['z_mean_dimension'] = [0.0,0.0]
+                    obj_dict['z_add_mean_location_img'] = [0.0,0.0]
+                    obj_dict['z_add_mean_dimension'] = [0.0,0.0]
                     continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
@@ -290,25 +365,62 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
-                obj_dict['z_mean_location_img'] = [rmean,cmean]
-                obj_dict['z_mean_dimension'] = [rlen,clen]
-                obj_dict['z_mean_loc_rgb'] = rgb
-                obj_dict['z_mean_loc_depth'] = depth
-                obj_dict['z_mean_loc_im3d'] = im3d
-                obj_dict['z_mean_loc_depth_im3d'] = depth_im3d
-                obj_dict['z_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['z_add_mean_location_img'] = [rmean,cmean]
+                obj_dict['z_add_mean_dimension'] = [rlen,clen]
+                obj_dict['z_add_mean_loc_rgb'] = rgb
+                obj_dict['z_add_mean_loc_depth'] = depth
+                obj_dict['z_add_mean_loc_im3d'] = im3d
+                obj_dict['z_add_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['z_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
-                obj_dict['z_mean_loc_K'] = K
+                obj_dict['z_add_mean_loc_K'] = K
                 # Get the projection matrix
                 P = env.get_projection_matrix()
-                obj_dict['z_mean_loc_P'] = P
+                obj_dict['z_add_mean_loc_P'] = P
                 V = env.get_V()
-                obj_dict['z_mean_loc_V'] = V
+                obj_dict['z_add_mean_loc_V'] = V
                 lightP = env.get_lightP()
-                obj_dict['z_mean_loc_lightP'] = lightP
+                obj_dict['z_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
-                obj_dict['z_mean_loc_lightV'] = lightV
+                obj_dict['z_add_mean_loc_lightV'] = lightV
+
+                # Place camera at mean of all objects' locations, -z translate
+                z_mean_loc = mean_loc - [0.0, 0.0, 0.2]
+                env.set_camera_point_at(z_mean_loc, dist=0.45)
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_sub_mean_loc')
+                location = np.array([0.0,0.0,0.0])
+                if not np.any(segmask):
+                    obj_dict['z_sub_mean_location_img'] = [0.0,0.0]
+                    obj_dict['z_sub_mean_dimension'] = [0.0,0.0]
+                    continue
+                rows = np.any(segmask, axis=0)
+                cols = np.any(segmask, axis=1)
+                rmin, rmax = np.where(rows)[0][[0, -1]]
+                cmin, cmax = np.where(cols)[0][[0, -1]]
+                rmean = (rmin+rmax)/2
+                cmean = (cmin+cmax)/2
+                rlen = rmax-rmin
+                clen = cmax-cmin
+                obj_dict['z_sub_mean_location_img'] = [rmean,cmean]
+                obj_dict['z_sub_mean_dimension'] = [rlen,clen]
+                obj_dict['z_sub_mean_loc_rgb'] = rgb
+                obj_dict['z_sub_mean_loc_depth'] = depth
+                obj_dict['z_sub_mean_loc_im3d'] = im3d
+                obj_dict['z_sub_mean_loc_depth_im3d'] = depth_im3d
+                obj_dict['z_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                # Get camera intrinsics
+                K = env.get_camera_intrinsics()
+                obj_dict['z_sub_mean_loc_K'] = K
+                # Get the projection matrix
+                P = env.get_projection_matrix()
+                obj_dict['z_sub_mean_loc_P'] = P
+                V = env.get_V()
+                obj_dict['z_sub_mean_loc_V'] = V
+                lightP = env.get_lightP()
+                obj_dict['z_sub_mean_loc_lightP'] = lightP
+                lightV = env.get_lightV()
+                obj_dict['z_sub_mean_loc_lightV'] = lightV
 
                 # Place camera at current object's location
                 env.set_camera_point_at(obj_dict['location'])
