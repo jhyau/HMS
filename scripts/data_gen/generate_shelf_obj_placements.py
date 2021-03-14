@@ -21,6 +21,7 @@ from PIL import Image
 import gibson2
 from hms.sim import *
 
+
 def generate_shelf_placements(objects_path,
                               container_file,
                               shelf_num,
@@ -196,6 +197,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['mean_loc_pose_rot'] = env.get_pose_rot_array()
 
                 # Place camera at mean of all objects' locations, +x translate
                 x_mean_loc = mean_loc + [0.2, 0.0, 0.0]
@@ -233,6 +237,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['x_add_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['x_add_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['x_add_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
 
                 # Place camera at mean of all objects' locations, -x translate
@@ -271,6 +278,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_sub_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['x_sub_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['x_sub_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['x_sub_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
 
                 # Place camera at mean of all objects' locations, +y translate
@@ -309,6 +319,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['y_add_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['y_add_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['y_add_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
                 # Place camera at mean of all objects' locations, -y translate
                 y_mean_loc = mean_loc - [0.0, 0.2, 0.0]
@@ -346,6 +359,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_sub_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['y_sub_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['y_sub_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['y_sub_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
 
                 # Place camera at mean of all objects' locations, +z translate
@@ -384,6 +400,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_add_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['z_add_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['z_add_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['z_add_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
                 # Place camera at mean of all objects' locations, -z translate
                 z_mean_loc = mean_loc - [0.0, 0.0, 0.2]
@@ -421,6 +440,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_sub_mean_loc_lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['z_sub_mean_loc_lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['z_sub_mean_loc_pose_trans'] = env.get_pose_trans_array()
+                obj_dict['z_sub_mean_loc_pose_rot'] = env.get_pose_rot_array()
 
                 # Place camera at current object's location
                 env.set_camera_point_at(obj_dict['location'])
@@ -445,6 +467,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['lightP'] = lightP
                 lightV = env.get_lightV()
                 obj_dict['lightV'] = lightV
+                # Get rotation and translation matrix
+                obj_dict['pose_trans'] = env.get_pose_trans_array()
+                obj_dict['pose_rot'] = env.get_pose_rot_array()
 
                 # Try a different camera position (randomnly)
                 env.set_camera_point_at(obj_dict['location'], randomize=True)
@@ -469,6 +494,9 @@ def generate_shelf_placements(objects_path,
                 obj_dict['lightP_rand'] = lightP_rand
                 lightV_rand = env.get_lightV()
                 obj_dict['lightV_rand'] = lightV_rand
+                # Get rotation and translation matrix
+                obj_dict['pose_trans_rand'] = env.get_pose_trans_array()
+                obj_dict['pose_rot_rand'] = env.get_pose_rot_array()
 
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)

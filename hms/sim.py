@@ -255,6 +255,30 @@ class ContainerObjectsEnv(object):
         lightP = self.simulator.renderer.lightP
         return lightP
 
+    def get_pose_trans_array(self):
+        pose_trans_array = self.simulator.renderer.pose_trans_array
+        return pose_trans_array
+
+    def get_pose_rot_array(self):
+        pose_rot_array = self.simulator.renderer.pose_rot_array
+        return pose_rot_array
+
+    def get_last_trans_array(self):
+        last_trans_array = self.simulator.renderer.last_trans_array
+        return last_trans_array
+
+    def get_last_rot_array(self):
+        last_rot_array = self.simulator.renderer.last_rot_array
+        return last_rot_array
+
+    def get_trans_data(self):
+        trans_data = self.simulator.renderer.trans_data
+        return trans_data
+
+    def get_rot_data(self):
+        rot_data = self.simulator.renderer.rot_data
+        return rot_data
+
     def get_observation(self,
                         segmak_object_id=None,
                         visualize=False,
