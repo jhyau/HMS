@@ -163,7 +163,7 @@ def generate_shelf_placements(objects_path,
 
                 # Place camera at mean of all objects' locations 
                 env.set_camera_point_at(mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, title='mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True,title='mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['location_img'] = [0.0,0.0]
@@ -200,7 +200,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, x translate
                 x_mean_loc = mean_loc + [0.05, 0.0, 0.0]
                 env.set_camera_point_at(x_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, title='x_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['x_mean_location_img'] = [0.0,0.0]
@@ -238,7 +238,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, y translate
                 y_mean_loc = mean_loc + [0.0, 0.05, 0.0]
                 env.set_camera_point_at(y_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, title='y_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['y_mean_location_img'] = [0.0,0.0]
@@ -276,7 +276,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, z translate
                 z_mean_loc = mean_loc + [0.0, 0.0, 0.05]
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, title='z_mean_loc')
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['z_mean_location_img'] = [0.0,0.0]
