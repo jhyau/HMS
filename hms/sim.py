@@ -206,6 +206,7 @@ class ContainerObjectsEnv(object):
         self.simulator.renderer.instances = []
         selected_object = self.get_body(selected_object_id)
 
+        print(f'all instances: {all_instances}')
         for instance in all_instances:
             print(f'keys in instance: {instance.keys()}')
             if selected_object is not None and isinstance(instance, Instance) and instance.pybullet_uuid == selected_object:
