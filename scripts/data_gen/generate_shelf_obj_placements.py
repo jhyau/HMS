@@ -156,7 +156,6 @@ def generate_shelf_placements(objects_path,
                 obj_dict = result_dict[obj_id]
                 mean_loc+=obj_dict['location']
             mean_loc/=len(result_dict)
-            obj_dict['mean_location'] = mean_loc
 
             rgb, depth, im3d, depth_im3d = env.get_observation()
             print(f"obj_ids: {result_dict.keys()}")
@@ -181,6 +180,7 @@ def generate_shelf_placements(objects_path,
                 clen = cmax-cmin
                 obj_dict['location_img'] = [rmean,cmean]
                 obj_dict['dimension'] = [rlen,clen]
+                obj_dict['mean_location'] = mean_loc
                 obj_dict['mean_loc_rgb'] = rgb
                 obj_dict['mean_loc_depth'] = depth
                 obj_dict['mean_loc_im3d'] = im3d
