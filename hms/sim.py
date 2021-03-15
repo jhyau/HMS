@@ -212,10 +212,12 @@ class ContainerObjectsEnv(object):
                 self.simulator.renderer.instances.append(instance)
                 info['pose_trans'] = instance.pose_trans
                 info['pose_rot'] = instance.pose_rot
+                info['pose'] = instance.get_pose_in_camera()
             elif isinstance(instance, Instance) and instance.pybullet_uuid == selected_object_id:
                 self.simulator.renderer.instances.append(instance)
                 info['pose_trans'] = instance.pose_trans
                 info['pose_rot'] = instance.pose_rot
+                info['pose'] = instance.get_pose_in_camera()
         target_segmask = np.sum(self.simulator.renderer.render(modes=('seg'))[0][:,:,:3], axis=2)
 
         target_segmask, target_depth = self.simulator.renderer.render(modes=('seg', '3d'))

@@ -156,6 +156,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict = result_dict[obj_id]
                 mean_loc+=obj_dict['location']
             mean_loc/=len(result_dict)
+            obj_dict['mean_location'] = mean_loc
 
             rgb, depth, im3d, depth_im3d = env.get_observation()
             print(f"obj_ids: {result_dict.keys()}")
@@ -187,6 +188,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['mean_loc_K'] = K
@@ -222,6 +224,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['x_add_mean_location'] = x_mean_loc
                 obj_dict['x_add_mean_location_img'] = [rmean,cmean]
                 obj_dict['x_add_mean_dimension'] = [rlen,clen]
                 obj_dict['x_add_mean_loc_rgb'] = rgb
@@ -231,6 +234,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_add_mean_loc_K'] = K
@@ -267,6 +271,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['x_sub_mean_location'] = x_mean_loc
                 obj_dict['x_sub_mean_location_img'] = [rmean,cmean]
                 obj_dict['x_sub_mean_dimension'] = [rlen,clen]
                 obj_dict['x_sub_mean_loc_rgb'] = rgb
@@ -276,6 +281,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_sub_mean_loc_K'] = K
@@ -312,6 +318,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['y_add_mean_location'] = y_mean_loc
                 obj_dict['y_add_mean_location_img'] = [rmean,cmean]
                 obj_dict['y_add_mean_dimension'] = [rlen,clen]
                 obj_dict['y_add_mean_loc_rgb'] = rgb
@@ -321,6 +328,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_add_mean_loc_K'] = K
@@ -356,6 +364,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['y_sub_mean_location'] = y_mean_loc
                 obj_dict['y_sub_mean_location_img'] = [rmean,cmean]
                 obj_dict['y_sub_mean_dimension'] = [rlen,clen]
                 obj_dict['y_sub_mean_loc_rgb'] = rgb
@@ -365,6 +374,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_sub_mean_loc_K'] = K
@@ -401,6 +411,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['z_add_mean_location'] = z_mean_loc
                 obj_dict['z_add_mean_location_img'] = [rmean,cmean]
                 obj_dict['z_add_mean_dimension'] = [rlen,clen]
                 obj_dict['z_add_mean_loc_rgb'] = rgb
@@ -410,6 +421,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_add_mean_loc_K'] = K
@@ -445,6 +457,7 @@ def generate_shelf_placements(objects_path,
                 cmean = (cmin+cmax)/2
                 rlen = rmax-rmin
                 clen = cmax-cmin
+                obj_dict['z_sub_mean_location'] = z_mean_loc
                 obj_dict['z_sub_mean_location_img'] = [rmean,cmean]
                 obj_dict['z_sub_mean_dimension'] = [rlen,clen]
                 obj_dict['z_sub_mean_loc_rgb'] = rgb
@@ -454,6 +467,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_sub_mean_loc_K'] = K
@@ -478,11 +492,13 @@ def generate_shelf_placements(objects_path,
                 obj_image = env.get_obj_img(rgb, segmask, save=True)
                 obj_dict[str(obj_id)+'_image'] = obj_image
                 # Add the rgb and depth images
+                obj_dict[str(obj_id)+'_location'] = obj_dict['location']
                 obj_dict['rgb'] = rgb
                 obj_dict['depth'] = depth
                 obj_dict[str(obj_id)+'_segmask'] = segmask
                 obj_dict[str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict[str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
+                obj_dict[str(obj_id)+'_pose'] = obj_info['pose']
                 obj_dict['im3d'] = im3d
                 obj_dict['depth_im3d'] = depth_im3d
                 # Get camera intrinsics
@@ -509,11 +525,13 @@ def generate_shelf_placements(objects_path,
                 obj_image = env.get_obj_img(rgb, segmask, save=True)
                 obj_dict[str(obj_id)+'_image_rand'] = obj_image
                 # Add the rgb and depth images
+                obj_dict['location_rand'] = obj_dict['location']
                 obj_dict['rgb_rand'] = rgb
                 obj_dict['depth_rand'] = depth
                 obj_dict[str(obj_id)+'_segmask_rand'] = segmask
                 obj_dict[str(obj_id)+'_pose_trans_rand'] = obj_info['pose_trans']
                 obj_dict[str(obj_id)+'_pose_rot_rand'] = obj_info['pose_rot']
+                obj_dict[str(obj_id)+'_pose_rand'] = obj_info['pose']
                 obj_dict['im3d_rand'] = im3d
                 obj_dict['depth_im3d_rand'] = depth_im3d
                 # Get camera intrinsics
