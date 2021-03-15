@@ -208,8 +208,9 @@ class ContainerObjectsEnv(object):
 
         print(f'all instances: {all_instances}')
         for instance in all_instances:
-            print(f'trans in instance: {instance.poses_trans}')
-            print(f'rot in instance: {instance.poses_rot}')
+            print(f'attributes of instance: {dir(instance)}')
+            print(f'trans in instance: {instance.pose_trans}')
+            print(f'rot in instance: {instance.pose_rot}')
             if selected_object is not None and isinstance(instance, Instance) and instance.pybullet_uuid == selected_object:
                 self.simulator.renderer.instances.append(instance)
             elif isinstance(instance, Instance) and instance.pybullet_uuid == selected_object_id:
