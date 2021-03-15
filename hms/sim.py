@@ -207,13 +207,14 @@ class ContainerObjectsEnv(object):
         selected_object = self.get_body(selected_object_id)
 
         for instance in all_instances:
+            print(f'keys in instance: {instance.keys()}')
             if selected_object is not None and isinstance(instance, Instance) and instance.pybullet_uuid == selected_object:
                 self.simulator.renderer.instances.append(instance)
             elif isinstance(instance, Instance) and instance.pybullet_uuid == selected_object_id:
                 self.simulator.renderer.instances.append(instance)
         target_segmask = np.sum(self.simulator.renderer.render(modes=('seg'))[0][:,:,:3], axis=2)
 
-        target_segmask, target_depth, target_scene = self.simulator.renderer.render(modes=('seg', '3d', 'scene_flow'))
+        target_segmask, target_depth = self.simulator.renderer.render(modes=('seg', '3d'))
         target_segmask = np.sum(target_segmask[:,:,:3],axis=2)
         target_depth = target_depth[:,:,2]
 
