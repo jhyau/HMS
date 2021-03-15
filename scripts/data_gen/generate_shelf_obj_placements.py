@@ -164,7 +164,7 @@ def generate_shelf_placements(objects_path,
 
                 # Place camera at mean of all objects' locations 
                 env.set_camera_point_at(mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True,title='mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True,title='mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['location_img'] = [0.0,0.0]
@@ -185,6 +185,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_im3d'] = im3d
                 obj_dict['mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['mean_loc_K'] = K
@@ -206,7 +208,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, +x translate
                 x_mean_loc = mean_loc + [0.2, 0.0, 0.0]
                 env.set_camera_point_at(x_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_add_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['x_add_mean_location_img'] = [0.0,0.0]
@@ -227,6 +229,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_add_mean_loc_im3d'] = im3d
                 obj_dict['x_add_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_add_mean_loc_K'] = K
@@ -249,7 +253,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, -x translate
                 x_mean_loc = mean_loc - [0.2, 0.0, 0.0]
                 env.set_camera_point_at(x_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_sub_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='x_sub_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['x_sub_mean_location_img'] = [0.0,0.0]
@@ -270,6 +274,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_sub_mean_loc_im3d'] = im3d
                 obj_dict['x_sub_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_sub_mean_loc_K'] = K
@@ -292,7 +298,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, +y translate
                 y_mean_loc = mean_loc + [0.0, 0.2, 0.0]
                 env.set_camera_point_at(y_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_add_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['y_add_mean_location_img'] = [0.0,0.0]
@@ -313,6 +319,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_add_mean_loc_im3d'] = im3d
                 obj_dict['y_add_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_add_mean_loc_K'] = K
@@ -334,7 +342,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, -y translate
                 y_mean_loc = mean_loc - [0.0, 0.2, 0.0]
                 env.set_camera_point_at(y_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_sub_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='y_sub_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['y_sub_mean_location_img'] = [0.0,0.0]
@@ -355,6 +363,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_sub_mean_loc_im3d'] = im3d
                 obj_dict['y_sub_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_sub_mean_loc_K'] = K
@@ -377,7 +387,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, +z translate
                 z_mean_loc = mean_loc + [0.0, 0.0, 0.2]
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_add_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_add_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['z_add_mean_location_img'] = [0.0,0.0]
@@ -398,6 +408,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_add_mean_loc_im3d'] = im3d
                 obj_dict['z_add_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_add_mean_loc_K'] = K
@@ -419,7 +431,7 @@ def generate_shelf_placements(objects_path,
                 # Place camera at mean of all objects' locations, -z translate
                 z_mean_loc = mean_loc - [0.0, 0.0, 0.2]
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_sub_mean_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='z_sub_mean_loc')
                 location = np.array([0.0,0.0,0.0])
                 if not np.any(segmask):
                     obj_dict['z_sub_mean_location_img'] = [0.0,0.0]
@@ -440,6 +452,8 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_sub_mean_loc_im3d'] = im3d
                 obj_dict['z_sub_mean_loc_depth_im3d'] = depth_im3d
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_segmask'] = segmask
+                obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_sub_mean_loc_K'] = K
@@ -460,13 +474,15 @@ def generate_shelf_placements(objects_path,
 
                 # Place camera at current object's location
                 env.set_camera_point_at(obj_dict['location'])
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='obj_loc')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='obj_loc')
                 obj_image = env.get_obj_img(rgb, segmask, save=True)
                 obj_dict[str(obj_id)+'_image'] = obj_image
                 # Add the rgb and depth images
                 obj_dict['rgb'] = rgb
                 obj_dict['depth'] = depth
                 obj_dict[str(obj_id)+'_segmask'] = segmask
+                obj_dict[str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
+                obj_dict[str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['im3d'] = im3d
                 obj_dict['depth_im3d'] = depth_im3d
                 # Get camera intrinsics
@@ -489,13 +505,15 @@ def generate_shelf_placements(objects_path,
 
                 # Try a different camera position (randomnly)
                 env.set_camera_point_at(obj_dict['location'], randomize=True)
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='rand')
+                rgb, depth, segmask, obj_info, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True, title='rand')
                 obj_image = env.get_obj_img(rgb, segmask, save=True)
                 obj_dict[str(obj_id)+'_image_rand'] = obj_image
                 # Add the rgb and depth images
                 obj_dict['rgb_rand'] = rgb
                 obj_dict['depth_rand'] = depth
                 obj_dict[str(obj_id)+'_segmask_rand'] = segmask
+                obj_dict[str(obj_id)+'_pose_trans_rand'] = obj_info['pose_trans']
+                obj_dict[str(obj_id)+'_pose_rot_rand'] = obj_info['pose_rot']
                 obj_dict['im3d_rand'] = im3d
                 obj_dict['depth_im3d_rand'] = depth_im3d
                 # Get camera intrinsics

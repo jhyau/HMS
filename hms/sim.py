@@ -206,15 +206,16 @@ class ContainerObjectsEnv(object):
         self.simulator.renderer.instances = []
         selected_object = self.get_body(selected_object_id)
 
-        print(f'all instances: {all_instances}')
+        info = {}
         for instance in all_instances:
-            print(f'attributes of instance: {dir(instance)}')
-            print(f'trans in instance: {instance.pose_trans}')
-            print(f'rot in instance: {instance.pose_rot}')
             if selected_object is not None and isinstance(instance, Instance) and instance.pybullet_uuid == selected_object:
                 self.simulator.renderer.instances.append(instance)
+                info['pose_trans'] = instance.pose_trans
+                info['pose_rot'] = instance.pose_rot
             elif isinstance(instance, Instance) and instance.pybullet_uuid == selected_object_id:
                 self.simulator.renderer.instances.append(instance)
+                info['pose_trans'] = instance.pose_trans
+                info['pose_rot'] = instance.pose_rot
         target_segmask = np.sum(self.simulator.renderer.render(modes=('seg'))[0][:,:,:3], axis=2)
 
         target_segmask, target_depth = self.simulator.renderer.render(modes=('seg', '3d'))
@@ -223,12 +224,12 @@ class ContainerObjectsEnv(object):
 
         self.simulator.renderer.instances=all_instances
         if not with_occlusion:
-            return target_segmask
+            return target_segmask, info
 
         all_depth = self.simulator.renderer.render(modes=('3d'))[0][:,:,2]
         occluded_segmask = np.logical_and(np.abs(target_depth-all_depth)<0.01, target_segmask)
 
-        return occluded_segmask
+        return occluded_segmask, info
 
     def set_camera_point_at(self, position, randomize=False, dist=0.3):
         camera_eye_position = np.asarray([position[0], position[1]-dist, position[2]+0.1])
@@ -296,7 +297,7 @@ class ContainerObjectsEnv(object):
                         title=None):
         rgb_im, depth_im, im3d, depth_im3d = self.get_renderer_rgb_depth()
         if segmak_object_id:
-            segmask_im = self.get_renderer_segmask(segmak_object_id)
+            segmask_im, info = self.get_renderer_segmask(segmak_object_id)
 
         if visualize:
             plt.imshow(segmask_im)
@@ -344,7 +345,7 @@ class ContainerObjectsEnv(object):
             plt.close()
 
         if segmak_object_id:
-            return rgb_im, depth_im, segmask_im, im3d, depth_im3d
+            return rgb_im, depth_im, segmask_im, info, im3d, depth_im3d
         return rgb_im, depth_im, im3d, depth_im3d
 
     def get_obj_ids(self):
