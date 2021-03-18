@@ -246,6 +246,18 @@ class ContainerObjectsEnv(object):
         K = self.simulator.renderer.get_intrinsics()
         return K
 
+    def get_camera(self):
+        camera = self.simulator.renderer.camera
+        return camera
+
+    def get_target(self):
+        target = self.simulator.renderer.target
+        return target
+
+    def get_up(self):
+        up = self.simulator.renderer.up
+        return up
+
     def get_projection_matrix(self):
         P = self.simulator.renderer.P
         return P
