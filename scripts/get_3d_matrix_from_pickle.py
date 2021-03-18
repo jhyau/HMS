@@ -115,6 +115,17 @@ for placement in PICKLE_PATH:
             np.save(path+'/'+title+'_z_add_mean_loc', p[key]['z_add_mean_loc_'+str(key)+'_pose'])
             np.save(path+'/'+title+'_z_sub_mean_loc', p[key]['z_sub_mean_loc_'+str(key)+'_pose'])
 
+            title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_mat'
+            np.save(path+'/'+title, p[key][str(key)+'_mat'])
+            np.save(path+'/'+title+'_rand', p[key][str(key)+'_mat_rand'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_'+str(key)+'_mat_rot'])
+            np.save(path+'/'+title+'_x_add_mean_loc', p[key]['x_add_mean_loc_'+str(key)+'_mat'])
+            np.save(path+'/'+title+'_x_sub_mean_loc', p[key]['x_sub_mean_loc_'+str(key)+'_mat'])
+            np.save(path+'/'+title+'_y_add_mean_loc', p[key]['y_add_mean_loc_'+str(key)+'_mat'])
+            np.save(path+'/'+title+'_y_sub_mean_loc', p[key]['y_sub_mean_loc_'+str(key)+'_mat'])
+            np.save(path+'/'+title+'_z_add_mean_loc', p[key]['z_add_mean_loc_'+str(key)+'_mat'])
+            np.save(path+'/'+title+'_z_sub_mean_loc', p[key]['z_sub_mean_loc_'+str(key)+'_mat'])
+
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_camera_intrinsics'
             np.save(path+'/'+title, p[key]['K'])
             np.save(path+'/'+title+'_rand', p[key]['K_rand'])

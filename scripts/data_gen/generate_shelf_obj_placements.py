@@ -169,7 +169,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['location_img'] = [0.0,0.0]
                     obj_dict['dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -189,6 +189,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['mean_loc_K'] = K
@@ -218,7 +219,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['x_add_mean_location_img'] = [0.0,0.0]
                     obj_dict['x_add_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -238,6 +239,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['x_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['x_add_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_add_mean_loc_K'] = K
@@ -268,7 +270,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['x_sub_mean_location_img'] = [0.0,0.0]
                     obj_dict['x_sub_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -288,6 +290,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['x_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['x_sub_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['x_sub_mean_loc_K'] = K
@@ -318,7 +321,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['y_add_mean_location_img'] = [0.0,0.0]
                     obj_dict['y_add_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -338,6 +341,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['y_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['y_add_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_add_mean_loc_K'] = K
@@ -367,7 +371,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['y_sub_mean_location_img'] = [0.0,0.0]
                     obj_dict['y_sub_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -387,6 +391,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['y_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['y_sub_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['y_sub_mean_loc_K'] = K
@@ -417,7 +422,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['z_add_mean_location_img'] = [0.0,0.0]
                     obj_dict['z_add_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -437,6 +442,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['z_add_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['z_add_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_add_mean_loc_K'] = K
@@ -466,7 +472,7 @@ def generate_shelf_placements(objects_path,
                 if not np.any(segmask):
                     obj_dict['z_sub_mean_location_img'] = [0.0,0.0]
                     obj_dict['z_sub_mean_dimension'] = [0.0,0.0]
-                    continue
+                    # continue
                 rows = np.any(segmask, axis=0)
                 cols = np.any(segmask, axis=1)
                 rmin, rmax = np.where(rows)[0][[0, -1]]
@@ -486,6 +492,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict['z_sub_mean_loc_'+str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict['z_sub_mean_loc_'+str(obj_id)+'_mat'] = obj_info['mat']
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['z_sub_mean_loc_K'] = K
@@ -520,6 +527,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict[str(obj_id)+'_pose_trans'] = obj_info['pose_trans']
                 obj_dict[str(obj_id)+'_pose_rot'] = obj_info['pose_rot']
                 obj_dict[str(obj_id)+'_pose'] = obj_info['pose']
+                obj_dict[str(obj_id)+'_mat'] = obj_info['mat']
                 obj_dict['im3d'] = im3d
                 obj_dict['depth_im3d'] = depth_im3d
                 # Get camera intrinsics
@@ -556,6 +564,7 @@ def generate_shelf_placements(objects_path,
                 obj_dict[str(obj_id)+'_pose_trans_rand'] = obj_info['pose_trans']
                 obj_dict[str(obj_id)+'_pose_rot_rand'] = obj_info['pose_rot']
                 obj_dict[str(obj_id)+'_pose_rand'] = obj_info['pose']
+                obj_dict[str(obj_id)+'_mat_rand'] = obj_info['mat']
                 obj_dict['im3d_rand'] = im3d
                 obj_dict['depth_im3d_rand'] = depth_im3d
                 # Get camera intrinsics
@@ -578,7 +587,6 @@ def generate_shelf_placements(objects_path,
                 # obj_dict['pose_rot_rand'] = env.get_pose_rot_array()
                 # obj_dict['last_pose_trans_rand'] = env.get_last_trans_array()
                 # obj_dict['last_pose_rot_rand'] = env.get_last_rot_array()
-
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)
             print(f'save pickle at: {filename}')
