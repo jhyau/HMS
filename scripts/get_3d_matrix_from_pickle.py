@@ -118,7 +118,7 @@ for placement in PICKLE_PATH:
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_mat'
             np.save(path+'/'+title, p[key][str(key)+'_mat'])
             np.save(path+'/'+title+'_rand', p[key][str(key)+'_mat_rand'])
-            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_'+str(key)+'_mat_rot'])
+            np.save(path+'/'+title+'_mean_loc', p[key]['mean_loc_'+str(key)+'_mat'])
             np.save(path+'/'+title+'_x_add_mean_loc', p[key]['x_add_mean_loc_'+str(key)+'_mat'])
             np.save(path+'/'+title+'_x_sub_mean_loc', p[key]['x_sub_mean_loc_'+str(key)+'_mat'])
             np.save(path+'/'+title+'_y_add_mean_loc', p[key]['y_add_mean_loc_'+str(key)+'_mat'])
